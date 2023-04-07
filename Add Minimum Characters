@@ -1,0 +1,33 @@
+class Solution{   
+public:
+    int addMinChar(string str){    
+        //code here
+        int n = str.size();
+        string revStr = str;
+        reverse(revStr.begin(), revStr.end());
+        string concat = str + "$" + revStr;
+        int m = concat.size();
+        int lps[m];
+        lps[0] = 0;
+        int len = 0;
+        int i = 1;
+        while (i < m) {
+            if (concat[i] == concat[len]) {
+                len++;
+                lps[i] = len;
+                i++;
+            }
+            else {
+                if (len != 0) {
+                    len = lps[len - 1];
+                }
+                else {
+                    lps[i] = 0;
+                    i++;
+                }
+            }
+        }
+        return (n - lps[m - 1]);
+        
+    }
+};
