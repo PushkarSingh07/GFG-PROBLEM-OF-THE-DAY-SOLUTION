@@ -1,0 +1,30 @@
+class Solution{
+public:
+string dfs(Node* root, unordered_map<string, int>& f)
+{
+    if (root == 0)
+        return "";
+    string s = "(";
+    s += to_string(root->data);
+    for (auto child : root->children) {
+        s += dfs(child, f);
+    }
+    s += ')';
+    f[s]++;
+ 
+    return s;
+}
+    int duplicateSubtreeNaryTree(Node *root){
+    unordered_map<string, int> f;
+ 
+    dfs(root, f);
+    int ans = 0;
+ 
+    for (auto p : f)
+        if (p.second > 1)
+            ans++;
+ 
+    return ans;
+        
+    }
+};
