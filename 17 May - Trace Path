@@ -1,0 +1,19 @@
+class Solution{
+public:
+    int isPossible(int n, int m, string s){
+        int side=0,wide=0,minside=0,maxside=0,minwide=0,maxwide=0;
+        for(auto x:s){
+            if(x=='R')side++;
+            else if(x=='L')side--;
+            else if(x=='U')wide++;
+            else if(x=='D')wide--;
+            minside=min(minside,side);
+            maxside=max(maxside,side);
+            minwide=min(minwide,wide);
+            maxwide=max(maxwide,wide);
+        }
+        if(maxside+abs(minside)+1>m)return 0;
+        if(maxwide+abs(minwide)+1>n)return 0;
+        return 1;
+    }
+};
