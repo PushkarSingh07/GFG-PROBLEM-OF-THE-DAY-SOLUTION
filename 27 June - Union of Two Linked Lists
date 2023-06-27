@@ -1,0 +1,27 @@
+class Solution
+{
+    public:
+    struct Node* makeUnion(struct Node* head1, struct Node* head2)
+    {
+        // code here
+        set<int> st;
+        Node* temp=head1;
+        while(temp){
+            st.insert(temp->data);
+            temp=temp->next;
+        }
+        temp=head2;
+        while(temp){
+            st.insert(temp->data);
+            temp=temp->next;
+        }
+        //creating a dummy node
+        Node* ans=new Node(0);
+        temp=ans;
+        for(auto i: st){
+            temp->next= new Node(i);
+            temp=temp->next;
+        }
+        return ans->next;
+    }
+};
